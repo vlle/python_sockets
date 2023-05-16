@@ -26,7 +26,7 @@ class Client:
 
 
 def main():
-    client = Client("127.0.0.1", 2446)
+    client = Client("127.0.0.1", 2447)
     message = "educational socket project"
     while 1:
         client.send(message)
