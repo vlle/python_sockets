@@ -1,4 +1,5 @@
 import socket as sck
+import threading as t
 
 class Srvr:
     def __init__(self, address: str, host: int) -> None:
@@ -25,10 +26,18 @@ class Srvr:
 
 
 def main():
-    server = Srvr("127.0.0.1", 2445)
+    server = Srvr("127.0.0.1", 2446)
     server.listen()
+    t1 = t.Thread(target=server.accept_messages)
+    t2 = t.Thread(target=server.accept_messages)
+    t1.start()
+    t2.start()
     while True is True:
-        server.accept_messages()
+        t1.run()
+        t2.run()
+        print(t.active_count())
+    t1.join()
+    t2.join()
 
 if __name__ == "__main__":
     main()

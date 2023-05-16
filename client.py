@@ -26,11 +26,12 @@ class Client:
 
 
 def main():
-    client = Client("127.0.0.1", 2445)
+    client = Client("127.0.0.1", 2446)
     message = "educational socket project"
     while 1:
         client.send(message)
         rcv_message = client.receive(len(message))
+        print(rcv_message)
         assert message == rcv_message
         time.sleep(0.5)
 
